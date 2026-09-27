@@ -1,0 +1,15 @@
+import{z}from'zod';
+const money=z.number().finite().min(0).max(100000);
+const form=z.object({name:z.string().trim().min(2).max(120),ownerEmail:z.string().email().max(200).optional(),slug:z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).max(100).optional(),phone:z.string().max(30).optional(),cnpj:z.string().max(30).optional(),cor:z.string().regex(/^#[0-9a-f]{6}$/i).default('#ef4444'),logo:z.string().max(2000).optional(),plano:z.enum(['starter','pro','enterprise']).default('starter'),cats:z.array(z.object({name:z.string().trim().min(1).max(100),items:z.array(z.object({name:z.string().trim().min(1).max(160),price:money})).max(100)})).max(30).default([]),zones:z.array(z.object({name:z.string().trim().min(1).max(100),fee:money,eta:z.number().int().min(1).max(300)})).max(30).default([]),teamEmails:z.array(z.string().email()).max(30).default([])});
+export async function createCompany(ctx:any,input:any,master=false){
+ const{identity:u,sql}=ctx;if(!u.userId)throw Error('Autenticação necessária');if(master&&!u.master)throw Error('Acesso restrito');
+ if(!master&&(await sql.sql('SELECT id FROM company_user WHERE user_id=?',[u.userId])).rows.length)throw Error('Você já possui um restaurante');
+ const verified=(await sql.sql('SELECT email,email_verified FROM users WHERE id=?',[u.userId])).rows[0];if(!verified||Number(verified.email_verified)!==1)throw Error('Verifique seu email para continuar');
+ const v=form.parse(input),email=(master?v.ownerEmail:u.email)?.trim().toLowerCase();if(!email)throw Error('Informe o email do administrador');if(v.logo&&!/^https:\/\//.test(v.logo))throw Error('Use URL HTTPS para logo');
+ const id=crypto.randomUUID(),slug=v.slug||v.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60)+'-'+id.slice(0,5);
+ const batch:any[]=[{sql:'INSERT INTO company(id,name,slug,owner_email,cnpj,telefone,cor_primaria,logo_url,plano,delivery_fee) VALUES(?,?,?,?,?,?,?,?,?,?)',args:[id,v.name,slug,email,v.cnpj||null,v.phone||null,v.cor,v.logo||null,master?v.plano:'starter',v.zones[0]?.fee||0]},{sql:"INSERT INTO company_user(id,company_id,email,nome,role,user_id) VALUES(?,?,?,?,'admin',?)",args:[crypto.randomUUID(),id,email,email.split('@')[0],email===u.email?u.userId:null]}];
+ for(const [i,cat] of v.cats.entries()){const cid=crypto.randomUUID();batch.push({sql:'INSERT INTO menu_category(id,company_id,name,sort_order) VALUES(?,?,?,?)',args:[cid,id,cat.name,i]});for(const item of cat.items)batch.push({sql:'INSERT INTO menu_item(id,company_id,category_id,name,price) VALUES(?,?,?,?,?)',args:[crypto.randomUUID(),id,cid,item.name,item.price]});}
+ for(const zone of v.zones)batch.push({sql:'INSERT INTO delivery_zone(id,company_id,name,delivery_fee,eta_minutes) VALUES(?,?,?,?,?)',args:[crypto.randomUUID(),id,zone.name,zone.fee,zone.eta]});
+ for(const e of [...new Set(v.teamEmails.map(e=>e.toLowerCase()))].filter(e=>e!==email))batch.push({sql:"INSERT INTO company_user(id,company_id,email,nome,role) VALUES(?,?,?,?,'garcom')",args:[crypto.randomUUID(),id,e,e.split('@')[0]]});
+ await sql.batch(batch,'write');return{ok:true,id,slug,email};
+}

@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "defaults": {
+    "require_auth": true
+  },
+  "modules": {
+    "db": {
+      "require_auth": true,
+      "raw_sql": {
+        "allowed": false
+      },
+      "row_level": {
+        "mode": "none",
+        "owner_field": "user_id"
+      },
+      "tables": {
+        "app_config": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "company": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "company_user": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "customer": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "delivery_zone": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "financial_entry": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "menu_category": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "menu_item": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "menu_item_extra": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "order": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "order_item": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "rider": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "user_roles": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "profiles": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "template_owner": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "users": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "password_reset_tokens": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "magic_link_tokens": {
+          "read": "deny",
+          "write": "deny"
+        },
+        "email_verification_tokens": {
+          "read": "deny",
+          "write": "deny"
+        }
+      }
+    }
+  }
+}

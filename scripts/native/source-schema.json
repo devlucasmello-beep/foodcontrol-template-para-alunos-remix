@@ -1,0 +1,618 @@
+{
+  "app_config": {
+    "app_name": {
+      "type": "string | null",
+      "optional": true
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "singleton": {
+      "type": "boolean",
+      "optional": true
+    },
+    "super_admin_emails": {
+      "type": "string[]",
+      "optional": true
+    },
+    "system_settings": {
+      "type": "Json | null",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    }
+  },
+  "company": {
+    "business_hours": {
+      "type": "Json | null",
+      "optional": true
+    },
+    "cnpj": {
+      "type": "string | null",
+      "optional": true
+    },
+    "cor_primaria": {
+      "type": "string",
+      "optional": true
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "delivery_fee": {
+      "type": "number",
+      "optional": true
+    },
+    "email": {
+      "type": "string | null",
+      "optional": true
+    },
+    "endereco": {
+      "type": "Json | null",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "logo_url": {
+      "type": "string | null",
+      "optional": true
+    },
+    "min_order": {
+      "type": "number",
+      "optional": true
+    },
+    "name": {
+      "type": "string",
+      "optional": false
+    },
+    "plano": {
+      "type": "Database[\"public\"][\"Enums\"][\"plan_tier\"]",
+      "optional": true
+    },
+    "slug": {
+      "type": "string",
+      "optional": false
+    },
+    "status": {
+      "type": "Database[\"public\"][\"Enums\"][\"company_status\"]",
+      "optional": true
+    },
+    "telefone": {
+      "type": "string | null",
+      "optional": true
+    },
+    "trial_ate": {
+      "type": "string",
+      "optional": true
+    },
+    "ultimo_acesso": {
+      "type": "string | null",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    },
+    "valor_mensal": {
+      "type": "number",
+      "optional": true
+    },
+    "whatsapp": {
+      "type": "string | null",
+      "optional": true
+    }
+  },
+  "company_user": {
+    "ativo": {
+      "type": "boolean",
+      "optional": true
+    },
+    "company_id": {
+      "type": "string",
+      "optional": false
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "email": {
+      "type": "string",
+      "optional": false
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "nome": {
+      "type": "string | null",
+      "optional": true
+    },
+    "role": {
+      "type": "Database[\"public\"][\"Enums\"][\"app_role\"]",
+      "optional": true
+    },
+    "ultimo_login": {
+      "type": "string | null",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    },
+    "user_id": {
+      "type": "string",
+      "optional": false
+    }
+  },
+  "customer": {
+    "address": {
+      "type": "Json | null",
+      "optional": true
+    },
+    "company_id": {
+      "type": "string",
+      "optional": false
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "email": {
+      "type": "string | null",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "last_order_at": {
+      "type": "string | null",
+      "optional": true
+    },
+    "name": {
+      "type": "string",
+      "optional": false
+    },
+    "phone": {
+      "type": "string",
+      "optional": false
+    },
+    "status": {
+      "type": "string",
+      "optional": true
+    },
+    "total_orders": {
+      "type": "number",
+      "optional": true
+    },
+    "total_spent": {
+      "type": "number",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    }
+  },
+  "delivery_zone": {
+    "active": {
+      "type": "boolean",
+      "optional": true
+    },
+    "company_id": {
+      "type": "string",
+      "optional": false
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "delivery_fee": {
+      "type": "number | null",
+      "optional": true
+    },
+    "eta_minutes": {
+      "type": "number",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "min_order": {
+      "type": "number | null",
+      "optional": true
+    },
+    "name": {
+      "type": "string",
+      "optional": false
+    },
+    "polygon": {
+      "type": "Json | null",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    }
+  },
+  "financial_entry": {
+    "amount": {
+      "type": "number",
+      "optional": false
+    },
+    "category": {
+      "type": "string | null",
+      "optional": true
+    },
+    "company_id": {
+      "type": "string",
+      "optional": false
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "date": {
+      "type": "string",
+      "optional": true
+    },
+    "description": {
+      "type": "string | null",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "reference_order_id": {
+      "type": "string | null",
+      "optional": true
+    },
+    "status": {
+      "type": "string",
+      "optional": true
+    },
+    "type": {
+      "type": "string",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    }
+  },
+  "menu_category": {
+    "active": {
+      "type": "boolean",
+      "optional": true
+    },
+    "company_id": {
+      "type": "string",
+      "optional": false
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "image_url": {
+      "type": "string | null",
+      "optional": true
+    },
+    "name": {
+      "type": "string",
+      "optional": false
+    },
+    "sort_order": {
+      "type": "number",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    }
+  },
+  "menu_item": {
+    "available": {
+      "type": "boolean",
+      "optional": true
+    },
+    "category_id": {
+      "type": "string | null",
+      "optional": true
+    },
+    "company_id": {
+      "type": "string",
+      "optional": false
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "description": {
+      "type": "string | null",
+      "optional": true
+    },
+    "featured": {
+      "type": "boolean",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "image_url": {
+      "type": "string | null",
+      "optional": true
+    },
+    "name": {
+      "type": "string",
+      "optional": false
+    },
+    "prep_time_minutes": {
+      "type": "number",
+      "optional": true
+    },
+    "price": {
+      "type": "number",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    }
+  },
+  "menu_item_extra": {
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "max_qty": {
+      "type": "number",
+      "optional": true
+    },
+    "menu_item_id": {
+      "type": "string",
+      "optional": false
+    },
+    "name": {
+      "type": "string",
+      "optional": false
+    },
+    "price": {
+      "type": "number",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    }
+  },
+  "order": {
+    "company_id": {
+      "type": "string",
+      "optional": false
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "customer_address": {
+      "type": "Json | null",
+      "optional": true
+    },
+    "customer_id": {
+      "type": "string | null",
+      "optional": true
+    },
+    "customer_name": {
+      "type": "string",
+      "optional": false
+    },
+    "customer_phone": {
+      "type": "string",
+      "optional": false
+    },
+    "delivery_fee": {
+      "type": "number",
+      "optional": true
+    },
+    "discount": {
+      "type": "number",
+      "optional": true
+    },
+    "eta_minutes": {
+      "type": "number | null",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "notes": {
+      "type": "string | null",
+      "optional": true
+    },
+    "payment_method": {
+      "type": "string | null",
+      "optional": true
+    },
+    "payment_status": {
+      "type": "string",
+      "optional": true
+    },
+    "rider_id": {
+      "type": "string | null",
+      "optional": true
+    },
+    "status": {
+      "type": "Database[\"public\"][\"Enums\"][\"order_status\"]",
+      "optional": true
+    },
+    "subtotal": {
+      "type": "number",
+      "optional": true
+    },
+    "total": {
+      "type": "number",
+      "optional": true
+    },
+    "type": {
+      "type": "string",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    }
+  },
+  "order_item": {
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "extras": {
+      "type": "Json | null",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "menu_item_id": {
+      "type": "string | null",
+      "optional": true
+    },
+    "name": {
+      "type": "string",
+      "optional": false
+    },
+    "notes": {
+      "type": "string | null",
+      "optional": true
+    },
+    "order_id": {
+      "type": "string",
+      "optional": false
+    },
+    "qty": {
+      "type": "number",
+      "optional": true
+    },
+    "total": {
+      "type": "number",
+      "optional": false
+    },
+    "unit_price": {
+      "type": "number",
+      "optional": false
+    }
+  },
+  "profiles": {
+    "avatar_url": {
+      "type": "string | null",
+      "optional": true
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "email": {
+      "type": "string",
+      "optional": false
+    },
+    "full_name": {
+      "type": "string | null",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    },
+    "user_id": {
+      "type": "string",
+      "optional": false
+    }
+  },
+  "rider": {
+    "active": {
+      "type": "boolean",
+      "optional": true
+    },
+    "commission_pct": {
+      "type": "number",
+      "optional": true
+    },
+    "company_id": {
+      "type": "string",
+      "optional": false
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "name": {
+      "type": "string",
+      "optional": false
+    },
+    "phone": {
+      "type": "string",
+      "optional": false
+    },
+    "plate": {
+      "type": "string | null",
+      "optional": true
+    },
+    "updated_at": {
+      "type": "string",
+      "optional": true
+    },
+    "vehicle_type": {
+      "type": "string | null",
+      "optional": true
+    }
+  },
+  "user_roles": {
+    "company_id": {
+      "type": "string | null",
+      "optional": true
+    },
+    "created_at": {
+      "type": "string",
+      "optional": true
+    },
+    "id": {
+      "type": "string",
+      "optional": true
+    },
+    "role": {
+      "type": "Database[\"public\"][\"Enums\"][\"app_role\"]",
+      "optional": false
+    },
+    "user_id": {
+      "type": "string",
+      "optional": false
+    }
+  }
+}
